@@ -3,21 +3,37 @@ var express = require('express');
 var reload  = require('reload');
 var app = express();
 var dataFile = require('./data/data.json');
+var io = require('socket.io')();
 
 app.set('port',process.env.PORT || 8888);
 app.set('appData',dataFile);
 app.set('view engine','ejs');
 app.set('views','./views');
 
+app.locals.siteTitle = 'Roux meetups';
+app.locals.allSpeakers = dataFile.speakers;
+
 app.use(express.static('./public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/speakers'));
+app.use(require('./routes/feedback'));
+app.use(require('./routes/api'));
+app.use(require('./routes/chat'));
+
 
 
 var sever = app.listen(8888,function () {
     console.log('LISTENING ON http://127.0.0.1:' + app.get('port')+'/');
     console.log('LISTENING ON http://127.0.0.1:' + app.get('port')+'/speakers');
 });
+
+io.attach(sever);
+io.on('connection',function (socket) {
+    console.log('user connected');
+    socket.on('postMessage',function (data) {
+        io.emit('updateMessages',data);
+    });
+})
 
 reload(sever,app);
 
