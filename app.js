@@ -5,7 +5,7 @@ var app = express();
 var dataFile = require('./data/data.json');
 var io = require('socket.io')();
 
-app.set('port',process.env.PORT || 8888);
+app.set('port',process.env.PORT || 8081);
 app.set('appData',dataFile);
 app.set('view engine','ejs');
 app.set('views','./views');
@@ -22,7 +22,7 @@ app.use(require('./routes/chat'));
 
 
 
-var sever = app.listen(8888,function () {
+var sever = app.listen(8081,function () {
     console.log('LISTENING ON http://127.0.0.1:' + app.get('port')+'/');
     console.log('LISTENING ON http://127.0.0.1:' + app.get('port')+'/speakers');
 });

@@ -2,11 +2,11 @@
   "name": "expressjs",
   "version": "1.0.0",
   "description": "Files for my Building a Website with Node & ExpressJS course on Lynda.com",
-  "main": "app/app.js",
+  "main": "try/app.js",
   "scripts": {
     "start": "nodemon -e css,ejs,js,json --watch app --ignore feedback.json"
   },
-  "author": "Ray Villalobos",
+  "author": "Qinjia Huang",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -14,5 +14,17 @@
     "express": "^4.15.3",
     "reload": "^1.1.6",
     "socket.io": "^2.0.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacalex/nodeexpress.git"
+  },
+  "keywords": [
+    "expressjs"
+  ],
+  "bugs": {
+    "url": "https://github.com/zacalex/nodeexpress/issues"
+  },
+  "homepage": "https://github.com/zacalex/nodeexpress#readme"
 }
